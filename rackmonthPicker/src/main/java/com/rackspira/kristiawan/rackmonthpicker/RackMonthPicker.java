@@ -106,17 +106,17 @@ public class RackMonthPicker {
             contentView.setFocusable(true);
             contentView.setFocusableInTouchMode(true);
 
-            mTitleView = (TextView) contentView.findViewById(R.id.title);
-            mYear = (TextView) contentView.findViewById(R.id.text_year);
+            mTitleView = contentView.findViewById(R.id.title);
+            mYear = contentView.findViewById(R.id.text_year);
 
-            Button next = (Button) contentView.findViewById(R.id.btn_next);
+            Button next = contentView.findViewById(R.id.btn_next);
             next.setOnClickListener(nextButtonClick());
 
-            Button previous = (Button) contentView.findViewById(R.id.btn_previous);
+            Button previous = contentView.findViewById(R.id.btn_previous);
             previous.setOnClickListener(previousButtonClick());
 
-            mPositiveButton = (Button) contentView.findViewById(R.id.btn_p);
-            mNegativeButton = (Button) contentView.findViewById(R.id.btn_n);
+            mPositiveButton = contentView.findViewById(R.id.btn_p);
+            mNegativeButton = contentView.findViewById(R.id.btn_n);
 
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
@@ -130,12 +130,14 @@ public class RackMonthPicker {
             recyclerView.setAdapter(monthAdapter);
 
             mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
-            mYear.setText(year + "");
+            mYear.setText(String.valueOf(year));
         }
 
         public void setLocale(Locale locale) {
             monthAdapter.setLocale(locale);
         }
+
+        public void setSelectedYear(int index) { year = index; }
 
         public void setSelectedMonth(int index) {
             monthAdapter.setSelectedItem(index);
@@ -166,8 +168,8 @@ public class RackMonthPicker {
                 @Override
                 public void onClick(View view) {
                     year++;
-                    mYear.setText(year + "");
-                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
+//                    mYear.setText(year + "");
+//                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
                 }
             };
         }
@@ -177,8 +179,8 @@ public class RackMonthPicker {
                 @Override
                 public void onClick(View view) {
                     year--;
-                    mYear.setText(year + "");
-                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
+//                    mYear.setText(year + "");
+//                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
                 }
             };
         }
@@ -189,9 +191,7 @@ public class RackMonthPicker {
                 public void onClick(View view) {
                     dateMonthDialogListener.onDateMonth(
                             monthAdapter.getMonth(),
-                            monthAdapter.getStartDate(),
-                            monthAdapter.getEndDate(),
-                            year, mTitleView.getText().toString());
+                            year);
 
                     mAlertDialog.dismiss();
                 }
@@ -209,7 +209,12 @@ public class RackMonthPicker {
 
         @Override
         public void onContentSelected() {
-            mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
+            dateMonthDialogListener.onDateMonth(
+                    monthAdapter.getMonth(),
+                    year);
+
+            mAlertDialog.dismiss();
+//            mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
         }
     }
 }

@@ -53,7 +53,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
     public void onBindViewHolder(MonthHolder holder, int position) {
         holder.textViewMonth.setText(months[position]);
         holder.textViewMonth.setTextColor(selectedItem == position ? Color.WHITE : Color.BLACK);
-        holder.itemView.setSelected(selectedItem == position ? true : false);
+        holder.itemView.setSelected(selectedItem == position);
     }
 
     @Override
@@ -83,20 +83,19 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
     }
 
     public int getMonth() {
-        return selectedItem + 1;
+        return selectedItem;
     }
 
-    public int getStartDate() {
-        return 1;
-    }
-
-    public int getEndDate() {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.MONTH, selectedItem + 1);
-        cal.set(Calendar.DAY_OF_MONTH, selectedItem + 1);
-        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        return maxDay;
-    }
+//    public int getStartDate() {
+//        return 1;
+//    }
+//
+//    public int getEndDate() {
+//        Calendar cal = Calendar.getInstance();
+//        cal.set(Calendar.MONTH, selectedItem);
+//        cal.set(Calendar.DAY_OF_MONTH, selectedItem + 1);
+//        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+//    }
 
     public String getShortMonth() {
         return months[selectedItem];
@@ -109,8 +108,8 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
 
         public MonthHolder(View itemView) {
             super(itemView);
-            layoutMain = (LinearLayout) itemView.findViewById(R.id.main_layout);
-            textViewMonth = (TextView) itemView.findViewById(R.id.text_month);
+            layoutMain = itemView.findViewById(R.id.main_layout);
+            textViewMonth = itemView.findViewById(R.id.text_month);
             if (color != 0)
                 setMonthBackgroundSelected(color);
 

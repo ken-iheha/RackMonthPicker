@@ -25,12 +25,9 @@ public class MainActivity extends Activity {
                 .setColorTheme(R.color.colorPrimary)
                 .setPositiveButton(new DateMonthDialogListener() {
                     @Override
-                    public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                    public void onDateMonth(int month, int year) {
                         System.out.println(month);
-                        System.out.println(startDate);
-                        System.out.println(endDate);
                         System.out.println(year);
-                        System.out.println(monthLabel);
                     }
                 })
                 .setNegativeButton(new OnCancelMonthDialogListener() {
