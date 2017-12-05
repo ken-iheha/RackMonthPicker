@@ -50,17 +50,15 @@
                 android:id="@+id/message_content_root"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                tools:layout_height="700dp">
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:id="@+id/message_content_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="23dp">
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

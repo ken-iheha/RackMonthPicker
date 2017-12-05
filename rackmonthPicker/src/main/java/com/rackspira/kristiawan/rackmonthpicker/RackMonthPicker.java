@@ -168,7 +168,7 @@ public class RackMonthPicker {
                 @Override
                 public void onClick(View view) {
                     year++;
-//                    mYear.setText(year + "");
+                    mYear.setText(String.valueOf(year));
 //                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
                 }
             };
@@ -179,7 +179,7 @@ public class RackMonthPicker {
                 @Override
                 public void onClick(View view) {
                     year--;
-//                    mYear.setText(year + "");
+                    mYear.setText(String.valueOf(year));
 //                    mTitleView.setText(monthAdapter.getShortMonth() + ", " + year);
                 }
             };
